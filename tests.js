@@ -3,7 +3,7 @@ const { describe, it } = require('mocha')
 const validateLineup = require('./index')
 
 describe('validateLineup', () => {
-  it.skip('returns true when the lineup satisfies all conditions', () => {
+  it('returns true when the lineup satisfies all conditions', () => {
     const lineup = [
       {
         id: 1, name: 'Chris Sale', position: 'P', teamId: 12, gameId: 123, salary: 9500
@@ -71,7 +71,7 @@ describe('validateLineup', () => {
     expect(validateLineup(lineup)).to.equal(false)
   })
 
-  it.skip('returns false when the lineup includes too many players from a single game', () => {
+  it('returns false when the lineup includes too many players from a single game', () => {
     const lineup = [
       {
         id: 1, name: 'Chris Sale', position: 'P', teamId: 12, gameId: 123, salary: 9500
@@ -105,7 +105,7 @@ describe('validateLineup', () => {
     expect(validateLineup(lineup)).to.equal(false)
   })
 
-  it.skip('returns false when the lineup includes too many players from a single position', () => {
+  it('returns false when the lineup includes too many players from a single position', () => {
     const lineup = [
       {
         id: 1, name: 'Chris Sale', position: 'P', teamId: 12, gameId: 123, salary: 9500

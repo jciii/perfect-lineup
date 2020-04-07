@@ -1,40 +1,52 @@
-
 const positionsRequired = ['P', 'C', '1B', '2B', '3B', 'SS', 'OF', 'OF', 'OF']
 
 function validateLineup(lineup) {
-  const newLineup = lineup.length === 9
-
-  if (newLineup) {
-    const positionCheck = lineup.reduce((acc, player) => {
+  if (lineup) {
+    let positionCheck = lineup.reduce((acc, player) => {
       acc.push(player.position)
 
       return acc
     }, [])
 
-    positionCheck === positionsRequired
-  }
-  if (newLineup) {
+    if (positionCheck.length !== positionsRequired.length ||
+      positionCheck.every((value, index) => value !== positionsRequired[index])) {
+      return false
+    }
+  } if (lineup) {
+    let teamCounter = []
+
     lineup.reduce((acc, team) => {
-      acc[team.teamId] = (acc[team.teamId] || 0) + 1
-      acc[team.teamId] <= 2
+      teamCounter = acc[team.teamId] = (acc[team.teamId] || 0) + 1
 
       return acc
     }, {})
-  } if (newLineup) {
+    if (teamCounter > 2) {
+      return false
+    }
+  } if (lineup) {
+    let gameCounter = []
+
     lineup.reduce((acc, team) => {
-      acc[team.gameId] = (acc[team.gameId] || 0) + 1
-      acc[team.gameId] <= 2
+      gameCounter = acc[team.gameId] = (acc[team.gameId] || 0) + 1
+
+
 
       return acc
     }, {})
-  }
-  if (newLineup) {
+    if (gameCounter >= 3) {
+      return false
+    }
+  } if (lineup) {
     const salaryCapMet = lineup.reduce((acc, lineup) => acc + lineup.salary, 0)
 
-    salaryCapMet <= 45000
+    if (salaryCapMet <= 45000) {
+      return true
+    }
+
+    return false
   }
 
-  return newLineup
+  return lineup
 }
 
 module.exports = validateLineup
