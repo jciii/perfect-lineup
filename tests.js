@@ -98,7 +98,7 @@ describe('validateLineup', () => {
         id: 8, name: 'Bryce Harper', position: 'OF', teamId: 15, gameId: 123, salary: 3800
       },
       {
-        id: 9, name: 'Mookie Betts', position: 'OF', teamId: 12, gameId: 123, salary: 3600
+        id: 9, name: 'Mookie Betts', position: 'OF', teamId: 14, gameId: 123, salary: 3600
       },
     ]
 
